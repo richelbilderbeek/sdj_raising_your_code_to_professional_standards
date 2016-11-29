@@ -38,6 +38,7 @@ Within R, he like to quote all works from Hadley Wickham.
 
 ## This is where the actual article text begins.
 
+```
 How texts should be formatted
 
 The entire text of the article is written using the Default style,‭ ‬except the main title‭ (‬formatted using Heading‭ ‬1‭) ‬subheadings within the text‭ (‬formatted using Heading‭ ‬2‭ ‬or Heading‭ ‬4‭ – ‬more about that in a while‭) ‬and inset headings‭ (‬formatted using Heading‭ ‬3‭)‬.‭ ‬Quick hint:‭ ‬the name of the current style is visible in the drop-down list in the top left corner of the application window.‭ ‬If you put the cursor on the text you’re reading right now,‭ ‬you should see Default there‭ (‬note that the style names discussed in this document apply to the English version of Open Office and will be different for other language versions‭)‬.
@@ -98,20 +99,53 @@ It’s well worth bearing the following rules in mind:
 	wherever possible,‭ ‬write small numbers using words rather than digits,‭ 
 
 	try to avoid abbreviations‭ – ‬use for example instead of e.g.‭ ‬and so on.‭ 
+```
 
-Summary
+### Advantages‭ 
 
+You are a novice R programmer. You have a brilliant idea. You
+follow that avenue. All your packages will benefit!
+
+A year later, you regret that descision. You could have known
+you should not have done that, would you have read those books
+and articles earlier. 
+
+You can prevent this detour. When in Rome, do like the romans
+do. Likewise, when programming in R, do like the experts do.
+
+### then show how it can be used in practice‭ 
+
+Let's create a default R package in R Studio.
+
+### then discuss who can use it‭ 
+
+### then discuss the consequences‭ 
+
+### finally show what else you can do‭ 
+
+
+## Summary
+
+```
 Nearly all texts conclude with a brief summary.
+```
 
-On the Web
+In this article, you have learned how to let
+yourself be corrected when deviating from
+the industry standard.
 
-http://first.address.full.link/‭ – ‬what’s here,‭
-‬http://second.address/something_else.html‭ – ‬what’s here
+Go forth and develop like a pro.
 
-Glossary
+## On the Web
 
-If the article contains important and/or highly technical terms,‭ ‬it’s a good idea to put them in this inset as a list.‭
-‬Don’t worry if you sometimes forget to apply some of the above rules‭ – ‬we’re here to correct whatever gets past you.‭ ‬However,‭ ‬by applying them correctly you make our job easier and as a result your text is more likely to be favourably evaluated.
+https://github.com/richelbilderbeek/sdj_r_and_travis_ci - the text and package used in this article
+
+## Glossary
+
+ * Continuous integration: integrate development branches continuously, monitoring their effects continously
+
+
+
 
 
 What kind of articles does Software Developer’s Journal look for‭?‬
