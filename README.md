@@ -13,10 +13,13 @@ program like the pros. You should read this article.
 
 ## What you will learn‭...
 
-In this article, you'll learn what continuous integration is. From
-a default package, you'll add continuous integration. After this,
-you'll add some trivial code that is checked for improvements
-by extra tools. In the end, you'll have a script that forces you to work like a pro.
+You'll learn to add automatic testing for
+coding standard, code coverage and good practices upon
+a push to your package its GitHub. 
+
+We'll use an example package as a testcase. 
+
+In the end, you'll have a script that forces you to work like a pro.
 
 ## What you should know‭...
 
@@ -80,9 +83,9 @@ do_magic <- function(x)
 }
 ```
 
-You've nicely documentated it. 
-You let it test its inputs.
-You also wrote some tests:
+You are proud on yourself: you've nicely documentated the
+function and you've let the function test its inputs.
+You even wrote some tests, using `testthat`:
 
 ```
 context("do_magic")
@@ -93,15 +96,39 @@ test_that("do_magic: use", {
 })
 ```
 
-No errors are found when you check the build in RStudio or use `devtools::check()`.
+You assume you've did a great job, as no errors 
+are found when you check the build in RStudio or use `devtools::check()`.
+You can submit your package to CRAN tonight without any 
+problem! Well, except convincing that the package has relevance...
 
+That night, before going to sleep, you start to ponder.
 You wonder if your code can be improved.
-As a novice programmer, you may have no ideas.
-Rest assured there will be packages that will have some suggestions.
+As a novice R programmer (there are hints in your R code you 
+come from a C or C++ background), you may have no ideas.
+
+Rest assured there will be packages that will aid you in becoming
+a professional R developer! 
 
 ### Activate Travis CI
 
-First step is to activate Travis CI. Only when activated, Travis CI will start running upon a GitHub push.
+![The Travis CI logo](TravisCI.png)
+
+First step is to activate Travis CI. 
+
+Travis CI is a continuous integration (hence, the 'CI' in the name) service, that 
+is free to use when developing FLOSS software and works smoothly with GitHub.
+
+Continuous integration means that the effect of code, after push it to GitHub,
+is shown automatically after a short amount of time. In other words:
+if you broke it, you'll notice early. 
+
+There are many other continuous 
+integration services that work just as well, like Jenkins, Codeship, CircleCI and Wercker.
+I just happened to learn Travis CI first and I am unaware of the quality of the other
+continuous integration services. 
+
+We need to activate Travis CI first, because only when activated, 
+it will start running upon a GitHub push.
 
 Go to the Travis CI website, www.travis-ci.org, and sign in with your GitHub account.
 Travis requests authorization for some GitHub information, like your name and email.
@@ -114,7 +141,24 @@ Go find your R package its GitHub and activate it.
 
 ### Activate Codecov
 
-Second step is to activate Codecov. Only when you have an account, Codecov will receive and display your code coverage.
+![The Codecov logo](Codecov.png)
+
+Second step is to activate Codecov. 
+
+Codecov is a website that shows your code coverage in a user-friendly form.
+Codecov tracks a project its code coverage in time and over multiple branches.
+
+Code coverage is the percentage of lines of code covered by tests.
+If a line is untested, either you have detected dead code (that can be removed)
+or you should (be able to) write another test that does use that code.
+Code coverage correlates with code quality [Del Frate et al., 1995]
+
+There are other services that track code coverage, like Code Climate, Codacity, Coveralls, 
+QuantifiedCode and many more. It just happens to be that the package we'll use (`lintr`)
+uses Codecov, but it could probably just as easy have used to other code coverage service.
+
+We need to activate Codecov now, because only when you have an account, 
+Codecov will receive and display your code coverage.
 
 Go to the Codecov website, https://codecov.io, and sign in with your GitHub account.
 Codecov requests authorization for some GitHub information, like your name and email.
@@ -124,11 +168,13 @@ After authorization, you see all the GitHubs that have sent their code coverages
 
 Third step is to create a Travis CI build script.
 
-In your project's root folder, create a file named `.travis.yml`.
-The file starts with a dot, which makes it a hidden file.
-The `yml` extension is an abbreviation of 'Yet another Markup Language'.
+A Travis CI build script is a file that instructs Travis CI what to do.
+Basically, you can instruct Travis CI to do anything you can do on 
+within the bash command language. A Travis CI build script is always named `.travis.yml`. 
+The file starts with a dot, which makes it a hidden file on UNIX systems.
+The `.yml` extension is an abbreviation of 'Yet another Markup Language'.
 
-Get the following text in `.travis.yml`:
+In your project's root folder, create a file named `.travis.yml`, and put the following text in it:
 
 ```
 language: r
@@ -145,15 +191,29 @@ after_success:
   - Rscript -e "goodpractice::gp()"
 ```
 
-Then commit and push this new file to GitHub.
-I like to name this commit `Go Travis!`.
+You can see that this `.travis.yml` is straightforward.
+The first line states that the programming language used here is R.
+The second line tells Travis CI to keep the installed packages in a cache, to prevent needless reinstalls of these packages.
+The 'r_github_packages' section instructs Travis CI to install these GitHub-hosted packages.
+The 'after_success' section is run after the package passes a 'devtools::check()'. In this section, it will run checks
+from the 'lintr', 'covr' and 'goodpractice' packages. More on those packages later.
+
+After having creates this `.travis.yml` file, commit and push it to GitHub.
+I enjoy to name this commit `Go Travis`, but I am open to even better suggestions.
+
+After pushing '.travis.yml' to your GitHub, it will be visible immediatly on GitHub:
 
 ![Build script added](GitHubBefore.png)
 
+In the back, Travis CI will start doing its labour immediatly.
+
 ### Read results
 
-On `travis-ci.org`, after approximately one minute, you'll see Travis CI doing its work.
-You will see Travis CI first installs all packages and their dependencies.
+Travis CI needs some time to set up a virtual machine. Every time you push to GitHub, a
+virtual machine is created, so you have a (close to) clean slate that your tests run in.
+To see Travis CI do its work, go to the Travis CI website (`travis-ci.org`). 
+After approximately one minute, you'll see Travis CI do its work.
+You will see it first installs all packages and their dependencies.
 The `travis.yml` script caches all packages, making the second build finish faster.
 
 Here is the header of your first build:
@@ -164,8 +224,8 @@ Craig Citro, Hadley Wickham and Jim Hester are all mentioned for their
 contributions to make R packages easy to be checked by Travis.
 
 We already know your build will pass, as you've already checked the build in RStudio or used `devtools::check()`.
-
-The new information is at the bottom:
+Would the build not pass, you will see the same output as given by 'devtools::check()' and nothing more.
+If the build passes, there will be some new information is at the bottom:
 
 ![The first Travis build has extra information](TravisFirstBuildBottom.png)
 
@@ -234,7 +294,6 @@ Add the following code to `README.md` to get the status badges displayed:
 [![Build Status](https://travis-ci.org/[yourname]/[package name].svg?branch=master)](https://travis-ci.org/[yourname]/[package name])
 [![codecov.io](https://codecov.io/github/[yourname]/[package name]/coverage.svg?branch=master)](https://codecov.io/github/[yourname]/[package name]?branch=master)
 ```
-
 I hope it will inspire other people to do the same. I know that it did so for me.
 
 ## Summary
@@ -250,6 +309,7 @@ Go forth and develop like a pro.
   * https://github.com/richelbilderbeek/sdj_prde: the text and pictures used in this article
   * https://github.com/richelbilderbeek/prde: the GitHub developed in this article
   * https://github.com/richelbilderbeek/PresentationsAboutR: slides and videos of my presentations about R
+  * https://travis-ci.org: the Travis CI website
   * https://codecov.io: the Codecov website
 
 ## Glossary
@@ -261,6 +321,7 @@ Go forth and develop like a pro.
 
 ## References
 
+ * [Del Frate et al., 1995] Del Frate, Fabio, et al. "On the correlation between code coverage and software reliability." Software Reliability Engineering, 1995. Proceedings., Sixth International Symposium on. IEEE, 1995.
  * [Hunt & Thomas, 2000] Hunt, Andrew, and David Thomas. The pragmatic programmer: from journeyman to master. Addison-Wesley Professional, 2000.
  * [Langr, 2013] Langr, Jeff. Modern C++ Programming with Test-driven Development: Code Better, Sleep Better. Pragmatic Bookshelf, 2013.
  * [Wickham, 2014] Wickham, Hadley. Advanced R. CRC Press, 2014.
