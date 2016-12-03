@@ -168,12 +168,20 @@ Clicking on the triangles on the left reveals some extra information.
 
 First, we'll expand the `lintr` (a package by Jim Hester) feedback. It shows:
 
-[The feedback given by lintr](TravisLintr.png)
+![The feedback given by lintr](TravisLintr.png)
 
 `lintr` is a package to check if your coding style follow the one used by, among others,
 [Wickham, 2014] and [Wickham, 2015]. You'll see that `lintr` has some suggestions. 
 
-Then we'll expand the `goodpractice` (a package by MangoTheCat) feedback. This one shows:
+Not only can you see this in your build logs, my good friend `lintr-bot` will
+comment on that commit himself, with exactly the same messages:
+
+![Lintr-bot comments on your commit](Lintr-bot.png)
+
+`lintr-bot` is always right.
+
+Moving on from `lintr-bot`s words of wisdom,
+we'll expand the `goodpractice` (a package by MangoTheCat) feedback. This one shows:
 
 ![The feedback given by goodpractice](TravisGoodpractice.png)
 
