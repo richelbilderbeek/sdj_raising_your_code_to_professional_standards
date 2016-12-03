@@ -4,7 +4,7 @@ My article published in the SDJ about professional.
 
 # Professional R development: being a good boy/girl
 
-## Lead:‭ ‬An intro to the article‭ (‬1-5‭ ‬sentences‭)‬.
+## Introduction
 
 You want to be good. You want to (learn to) write code that
 follows all good practices. You are open to being corrected
@@ -52,8 +52,13 @@ do. Likewise, when programming in R, do like the experts do.
 
 ## Use in practice
 
-### Testcase
+In this article, I will show how to let yourself be helped.
+First, I will introduce a testcase, that has possible 
+improvements. After setting up a Travis CI and Codecov account,
+a Travis CI script is pushed to the GitHub. Then I'll discuss
+the Travis CI build log.
 
+### Testcase
 
 You've written a brilliant function, called `do_magic`
 like this:
