@@ -1,42 +1,195 @@
-# sdj_r_and_travis_ci
+# Professional R development: being a good boy/girl
 
-My article published in the SDJ about R and Travis CI.
+My article published in the SDJ about professional .
 
-## Title
-
-Professional R development using Travis CI
+# Professional R development: being a good boy/girl
 
 ## Lead:‭ ‬An intro to the article‭ (‬1-5‭ ‬sentences‭)‬.
 
-You want to be good. You want to develop with
-following all good practices. You are open to being corrected
+You want to be good. You want to (learn to) write code that
+follows all good practices. You are open to being corrected
 by any professional tool and learn from it. You want to
 program like the pros. You should read this article.
 
-## What you will learn‭…
-
-```
-in a few points,‭ ‬outline what the reader will learn or find out from the article.
-```
+## What you will learn‭...
 
 In this article, you'll learn what continuous integration is. From
 a default package, you'll add continuous integration. After this,
 you'll add some trivial code that is checked for improvements
 by extra tools. In the end, you'll have a script that forces you to work like a pro.
 
-## What you should know‭…
+## What you should know‭...
 
-It is assumed you know how to create a package with the `testthat` testing framework
-and create a trivial function.
+It is assumed you know how to 
+ * create a package 
+ * use the `testthat` testing framework most basic functionality
+ * read a trivial function with basic R code
+ * how to let that package be hosted on GitHub
 
 ## About the author
 
 The author enjoys to teach programming following the industry's highest standards. 
-His students, aged 7-77 years, are all confronted with quotes
-from 'The Pragmatic Programmer' by Andrew Hunt and David Thomas.
+His students, aged 7-77 years, are all confronted with quotes from the literature,
+especially from 'The Pragmatic Programmer' by Andrew Hunt and David Thomas.
 Within R, he like to quote all works from Hadley Wickham.
 
-## This is where the actual article text begins.
+### Advantages‭ 
+
+You are a novice R programmer. You have a brilliant idea. You
+follow that avenue. All your packages will benefit!
+
+A year later, you regret that descision. You could have known
+you should not have done that, would you have read those books
+and articles earlier. 
+
+You can prevent this detour. When in Rome, do like the romans
+do. Likewise, when programming in R, do like the experts do.
+
+### Use in practice
+
+You've written a brilliant function, called `do_magic`
+like this:
+
+```
+#' Multiples all values by two, 
+#'   except 42, which stays 42
+#' @param x input, must be numeric
+#' @return magicified output
+#' @export
+do_magic <- function(x)
+{
+  if (!is.numeric(x)) {
+    stop("x must be numeric");
+  }
+  out = x * 2;
+  out = replace(out, out == 84, 42);
+  out;
+}
+```
+
+You've nicely documentated it. 
+You let it test its inputs.
+You also wrote some tests:
+
+```
+context("do_magic")
+
+test_that("do_magic: use", {
+  expect_equal(do_magic(42), 42)
+  expect_equal(do_magic(1), 2)
+})
+```
+
+No errors are found when you check the build in RStudio or use `devtools::check()`.
+
+You wonder if your code can be improved.
+As a novice programmer, you may have no ideas.
+Rest assured there will be packages that will have some suggestions.
+
+## Activate Travis CI
+
+First step is to activate Travis CI. Only when activated, Travis CI will start running upon a GitHub push.
+
+Go to the Travis CI website, www.travis-ci.org, and sign in with your GitHub account.
+Travis requests authorization for some GitHub information, like your name and email.
+After authorization, you see all GitHubs and their activation status
+
+![Overview of Travis CI accounts](TravisAccounts.png)
+
+The sliders indicate the Travis CI activation state. 
+Go find your R package its GitHub and activate it.
+
+## Add build script
+
+In your project's root folder, create a file named `.travis.yml`.
+The file starts with a dot, which makes it a hidden file.
+The `yml` extension is an abbreviation of 'Yet another Markup Language'.
+
+Get the following text in `.travis.yml`:
+
+```
+language: r
+cache: packages
+
+r_github_packages:
+  - jimhester/lintr
+  - jimhester/covr
+  - MangoTheCat/goodpractice
+
+after_success:
+  - Rscript -e "lintr::lint_package()"
+  - Rscript -e "covr::codecov()"
+  - Rscript -e "goodpractice::gp()"
+```
+
+Then commit and push this new file to GitHub.
+I like to name this commit `Go Travis!`.
+
+![Build script added](GitHubBefore.png)
+
+## Read results
+
+
+
+## Add build badges
+
+Add the following code to `README.md` to get the status badges displayed:
+
+```
+[![Build Status](https://travis-ci.org/richelbilderbeek/prde.svg?branch=master)](https://travis-ci.org/richelbilderbeek/prde)
+[![codecov.io](https://codecov.io/github/richelbilderbeek/prde/coverage.svg?branch=master)](https://codecov.io/github/richelbilderbeek/prde?branch=master)
+```
+
+## Who can use it?
+
+Already from the beginner level, one can use these techniques.
+For FOSS development, all tools are free.
+For closed-source development, there is a fee on using GitHub, Travis CI and Codecov.
+
+## What if I use it?
+
+```
+Code better. Sleep better [Langr, 2013]
+```
+
+ * As an developer, you can rest assured you've followed all best practices.
+ * As a potential collaborator, it will be easier to read your code.
+ * Within a team, there will be no need to write a low-level coding standard
+ * As a package maintainer, let Pull Requests be checked for these same high standards
+
+## What else you can do‭ 
+
+
+
+
+## Summary
+
+```
+Nearly all texts conclude with a brief summary.
+```
+
+In this article, you have learned how to let
+yourself be corrected when deviating from
+the industry standard.
+
+Go forth and develop like a pro.
+
+## On the Web
+
+https://github.com/richelbilderbeek/sdj_r_and_travis_ci - the text and package used in this article
+
+## Glossary
+
+ * Continuous integration: integrate development branches continuously, monitoring their effects continously
+
+## References
+
+ * [Hunt & Thomas, 2000] Hunt, Andrew, and David Thomas. The pragmatic programmer: from journeyman to master. Addison-Wesley Professional, 2000.
+ * [Langr, 2013] Langr, Jeff. Modern C++ Programming with Test-driven Development: Code Better, Sleep Better. Pragmatic Bookshelf, 2013.
+
+
+
+### Actual article guidlies
 
 ```
 How texts should be formatted
@@ -101,52 +254,7 @@ It’s well worth bearing the following rules in mind:
 	try to avoid abbreviations‭ – ‬use for example instead of e.g.‭ ‬and so on.‭ 
 ```
 
-### Advantages‭ 
-
-You are a novice R programmer. You have a brilliant idea. You
-follow that avenue. All your packages will benefit!
-
-A year later, you regret that descision. You could have known
-you should not have done that, would you have read those books
-and articles earlier. 
-
-You can prevent this detour. When in Rome, do like the romans
-do. Likewise, when programming in R, do like the experts do.
-
-### then show how it can be used in practice‭ 
-
-Let's create a default R package in R Studio.
-
-### then discuss who can use it‭ 
-
-### then discuss the consequences‭ 
-
-### finally show what else you can do‭ 
-
-
-## Summary
-
-```
-Nearly all texts conclude with a brief summary.
-```
-
-In this article, you have learned how to let
-yourself be corrected when deviating from
-the industry standard.
-
-Go forth and develop like a pro.
-
-## On the Web
-
-https://github.com/richelbilderbeek/sdj_r_and_travis_ci - the text and package used in this article
-
-## Glossary
-
- * Continuous integration: integrate development branches continuously, monitoring their effects continously
-
-
-
-
+### SDJ
 
 What kind of articles does Software Developer’s Journal look for‭?‬
 The idea of Software Developer’s Journal is to give the readers theory through practice.‭ ‬All our articles are written with that in mind,‭ ‬and so should be yours.
@@ -195,4 +303,6 @@ What matters is the quality of the article,‭ ‬its completeness,‭ ‬correc
 When we agree on the subject‭ (‬we have to talk first to see whether this subject has been mentioned in the past,‭ ‬whether it’s interesting for our readers,‭ ‬etc.‭)‬,‭ ‬it is time for the article’s draft.‭ ‬It is to show the article’s structure and the approach to the topic.‭ ‬A good detailed plan is the best way to see what the final article will look like,‭ ‬and a great help for you to write the article afterwards.
 
 When the plan is agreed and accepted,‭ ‬you can start to write the article.‭ ‬When it’s completed,‭ ‬it will be read by our editorial team and you will receive comments and suggestions regarding the possible changes.‭ ‬Then it will also be sent to our betatesting team,‭ ‬which might give you more suggestions how to change or expand the article.‭ ‬Once the paper is betatested and corrected,‭ ‬it will be published and might be translated to other languages and published in other Software Developer’s Journal editions.
+
+
 
