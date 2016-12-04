@@ -66,7 +66,7 @@ the Travis CI build log.
 You are reading Hadley Wickham's book 'R packages' and 
 are building a package following that structure.
 
-![Hadley Wickham](hadley.jpg)
+![Hadley Wickham](hadley.tif)
 
 Figure 1. Hadley Wickham
 
