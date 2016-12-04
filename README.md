@@ -68,6 +68,8 @@ are building a package following that structure.
 
 ![Hadley Wickham](hadley.jpg)
 
+Figure 1. Hadley Wickham
+
 You've written a brilliant function, called 'do_magic'
 like this (probably stored in a file called *R/do_magic.R*):
 
@@ -88,6 +90,8 @@ do_magic <- function(x)
 }
 ```
 
+Listing 1. The do_magic function
+
 You are proud of yourself: you've nicely documentated the
 function (using the 'Roxygen2' package). Next to this,
 your function checks its inputs, 
@@ -103,6 +107,8 @@ test_that("do_magic: use", {
   expect_equal(do_magic(1), 2)
 })
 ```
+
+Listing 2. The do_magic tests
 
 You assume you've did a great job, as no errors 
 are found when you check the build in RStudio or use _devtools::check()_.
@@ -120,6 +126,8 @@ a professional R developer!
 ### Activate Travis CI
 
 ![The Travis CI logo](TravisCI.png)
+
+Figure 2. The Travis CI logo
 
 First step is to activate Travis CI. 
 
@@ -146,12 +154,16 @@ After authorization, you see all GitHubs and their activation status
 
 ![Overview of Travis CI accounts](TravisAccounts.png)
 
+Figure 3. Overview of Travis CI accounts
+
 The sliders indicate the Travis CI activation state. 
 Go find your R package its GitHub and activate it.
 
 ### Activate Codecov
 
 ![The Codecov logo](Codecov.png)
+
+Figure 4. The Codecov logo
 
 Second step is to activate Codecov. 
 
@@ -201,6 +213,8 @@ after_success:
   - Rscript -e "goodpractice::gp()"
 ```
 
+Listing 3. The Travis CI script
+
 You can see that this *.travis.yml* is straightforward.
 The first line states that the programming language used here is R.
 The second line tells Travis CI to keep the installed packages in a cache, 
@@ -217,6 +231,8 @@ After pushing *.travis.yml* to your GitHub, it will be visible immediatly on Git
 
 ![Build script added](GitHubBefore.png)
 
+Figure 5. Your GitHub after adding the Travis CI build script
+
 In the back, Travis CI will start doing its labour immediatly.
 
 ### Read results
@@ -232,10 +248,14 @@ Here is the header of your first build:
 
 ![The first Travis build](TravisFirstBuild.png)
 
+Figure 6. Header of your first build
+
 Craig Citro, Hadley Wickham and Jim Hester are all mentioned for their
 contributions to make R packages easy to be checked by Travis.
 
 ![Craig Citro](craigcitro.png)
+
+Figure 7. Craig Citro
 
 We already know your build will pass, as you've already checked the build in RStudio or used _devtools::check()_.
 Would the build not pass, you will see the same output as given by _devtools::check()_ and nothing more.
@@ -243,21 +263,29 @@ If the build passes, there will be some new information is at the bottom:
 
 ![The first Travis build has extra information](TravisFirstBuildBottom.png)
 
+Figure 8. Tail of your first build
+
 Clicking on the triangles on the left reveals some extra information.
 
 First, we'll expand the 'lintr' package (by Jim Hester) its feedback. It shows:
 
 ![The feedback given by lintr](TravisLintr.png)
 
+Figure 9. The feedback given by the 'lintr' package
+
 'lintr' is a package to check if your coding style follow the one used by, among others,
 [Wickham, 2014] and [Wickham, 2015]. You'll see that 'lintr' has some suggestions. 
 
 ![Jim Hester](jimhester.jpg)
 
+Figure 10. Jim Hester
+
 Not only can you see this in your build logs, my good friend lintr-bot will
 comment on that commit himself, with exactly the same messages:
 
 ![Lintr-bot comments on your commit](Lintr-bot.png)
+
+Figure 11. Comments by lintr-bot on your commit
 
 lintr-bot is always right. In case you disagree with it, you can modify the 
 checks done by 'lintr' and allow for other coding standards (but why would
@@ -266,10 +294,14 @@ and wouldn't they also know the arguments favoring other standards?).
 
 ![MangoTheCat](MangoTheCat.png)
 
+Figure 12. MangoTheCat logo
+
 Moving on from lintr-bots words of wisdom,
 we'll expand the 'goodpractice' package (by MangoTheCat) its feedback. This one shows:
 
 ![The feedback given by goodpractice](TravisGoodpractice.png)
+
+Figure 13. Feedback given by the 'goodpractice' package
 
 'goodpractice' extends 'lintr' by adding good practices. For example, it may
 suggest not to use a function, but use a better alternative instead. 
@@ -281,6 +313,8 @@ Instead, go to the Codecov website, https://codecov.io,
 to get your code coverage displayed in a prettier way:
 
 ![The feedback given by Codecov](TravisCodecov.png)
+
+Figure 14. Feedback given by the 'covr' package, as displayed by Codecov
 
 For your code coverage, you can see that you have forgotten to test if your function does
 throw an exception when the input is not numerical.
@@ -327,6 +361,10 @@ Add the following code to `README.md` to get the status badges displayed:
 [![Build Status](https://travis-ci.org/[yourname]/[package name].svg?branch=master)](https://travis-ci.org/[yourname]/[package name])
 [![codecov.io](https://codecov.io/github/[yourname]/[package name]/coverage.svg?branch=master)](https://codecov.io/github/[yourname]/[package name]?branch=master)
 ```
+
+![Travis badges](Travis_badges.png)
+
+Figure 15. The badges displayed on your GitHub
 
 I hope it will inspire other people to do the same. I know that it did so for me.
 
