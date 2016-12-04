@@ -27,11 +27,11 @@ It is assumed you know how to
  
  * read a trivial function with basic R code
  * create a package 
- * use the `testthat` testing framework most basic functionality
+ * use the 'testthat' testing framework most basic functionality
  * how to let that package be hosted on GitHub
 
 To be able to read an R function, read any beginner book about
-R or use the `swirl` package. The other points are covered 
+R or use the 'swirl' package. The other points are covered 
 in [Hadley, 2015], a book that recommend beginners to read as soon as possible.
 
 ## About the author
@@ -63,7 +63,10 @@ the Travis CI build log.
 
 ### Testcase
 
-You've written a brilliant function, called `do_magic`
+You are reading Hadley Wickham's book 'R packages' and 
+are building a package following that structure.
+
+You've written a brilliant function, called 'do_magic'
 like this:
 
 ```
@@ -170,11 +173,11 @@ Third step is to create a Travis CI build script.
 
 A Travis CI build script is a file that instructs Travis CI what to do.
 Basically, you can instruct Travis CI to do anything you can do on 
-within the bash command language. A Travis CI build script is always named `.travis.yml`. 
+within the bash command language. A Travis CI build script is always named *.travis.yml*. 
 The file starts with a dot, which makes it a hidden file on UNIX systems.
 The `.yml` extension is an abbreviation of 'Yet another Markup Language'.
 
-In your project's root folder, create a file named `.travis.yml`, and put the following text in it:
+In your project's root folder, create a file named *.travis.yml*, and put the following text in it:
 
 ```
 language: r
@@ -191,14 +194,14 @@ after_success:
   - Rscript -e "goodpractice::gp()"
 ```
 
-You can see that this `.travis.yml` is straightforward.
+You can see that this *.travis.yml* is straightforward.
 The first line states that the programming language used here is R.
 The second line tells Travis CI to keep the installed packages in a cache, to prevent needless reinstalls of these packages.
 The 'r_github_packages' section instructs Travis CI to install these GitHub-hosted packages.
 The 'after_success' section is run after the package passes a 'devtools::check()'. In this section, it will run checks
 from the 'lintr', 'covr' and 'goodpractice' packages. More on those packages later.
 
-After having creates this `.travis.yml` file, commit and push it to GitHub.
+After having creates this *.travis.yml* file, commit and push it to GitHub.
 I enjoy to name this commit `Go Travis`, but I am open to even better suggestions.
 
 After pushing '.travis.yml' to your GitHub, it will be visible immediatly on GitHub:
