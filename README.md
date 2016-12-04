@@ -66,7 +66,7 @@ the Travis CI build log.
 You are reading Hadley Wickham's book 'R packages' and 
 are building a package following that structure.
 
-![Hadley Wickham](hadley.tif)
+![Hadley Wickham](hadley.tiff)
 
 Figure 1. Hadley Wickham
 
@@ -125,7 +125,7 @@ a professional R developer!
 
 ### Activate Travis CI
 
-![The Travis CI logo](TravisCI.png)
+![The Travis CI logo](TravisCI.tiff)
 
 Figure 2. The Travis CI logo
 
@@ -152,7 +152,7 @@ Go to the Travis CI website, _www.travis-ci.org_, and sign in with your GitHub a
 Travis requests authorization for some GitHub information, like your name and email.
 After authorization, you see all GitHubs and their activation status
 
-![Overview of Travis CI accounts](TravisAccounts.png)
+![Overview of Travis CI accounts](TravisAccounts.tiff)
 
 Figure 3. Overview of Travis CI accounts
 
@@ -161,7 +161,7 @@ Go find your R package its GitHub and activate it.
 
 ### Activate Codecov
 
-![The Codecov logo](Codecov.png)
+![The Codecov logo](Codecov.tiff)
 
 Figure 4. The Codecov logo
 
@@ -229,7 +229,7 @@ I enjoy to name this commit 'Go Travis', but I am open to even better suggestion
 
 After pushing *.travis.yml* to your GitHub, it will be visible immediatly on GitHub:
 
-![Build script added](GitHubBefore.png)
+![Build script added](GitHubBefore.tiff)
 
 Figure 5. Your GitHub after adding the Travis CI build script
 
@@ -246,14 +246,14 @@ The *.travis.yml* script caches all packages, making the second build finish fas
 
 Here is the header of your first build:
 
-![The first Travis build](TravisFirstBuild.png)
+![The first Travis build](TravisFirstBuild.tiff)
 
 Figure 6. Header of your first build
 
 Craig Citro, Hadley Wickham and Jim Hester are all mentioned for their
 contributions to make R packages easy to be checked by Travis.
 
-![Craig Citro](craigcitro.png)
+![Craig Citro](craigcitro.tiff)
 
 Figure 7. Craig Citro
 
@@ -261,7 +261,7 @@ We already know your build will pass, as you've already checked the build in RSt
 Would the build not pass, you will see the same output as given by _devtools::check()_ and nothing more.
 If the build passes, there will be some new information is at the bottom:
 
-![The first Travis build has extra information](TravisFirstBuildBottom.png)
+![The first Travis build has extra information](TravisFirstBuildBottom.tiff)
 
 Figure 8. Tail of your first build
 
@@ -269,21 +269,21 @@ Clicking on the triangles on the left reveals some extra information.
 
 First, we'll expand the 'lintr' package (by Jim Hester) its feedback. It shows:
 
-![The feedback given by lintr](TravisLintr.png)
+![The feedback given by lintr](TravisLintr.tiff)
 
 Figure 9. The feedback given by the 'lintr' package
 
 'lintr' is a package to check if your coding style follow the one used by, among others,
 [Wickham, 2014] and [Wickham, 2015]. You'll see that 'lintr' has some suggestions. 
 
-![Jim Hester](jimhester.jpg)
+![Jim Hester](jimhester.tiff)
 
 Figure 10. Jim Hester
 
 Not only can you see this in your build logs, my good friend lintr-bot will
 comment on that commit himself, with exactly the same messages:
 
-![Lintr-bot comments on your commit](Lintr-bot.png)
+![Lintr-bot comments on your commit](Lintr-bot.tiff)
 
 Figure 11. Comments by lintr-bot on your commit
 
@@ -292,14 +292,14 @@ checks done by 'lintr' and allow for other coding standards (but why would
 one want to go that avenue? Why would the experts have picked those standards,
 and wouldn't they also know the arguments favoring other standards?).
 
-![MangoTheCat](MangoTheCat.png)
+![MangoTheCat](MangoTheCat.tiff)
 
 Figure 12. MangoTheCat logo
 
 Moving on from lintr-bots words of wisdom,
 we'll expand the 'goodpractice' package (by MangoTheCat) its feedback. This one shows:
 
-![The feedback given by goodpractice](TravisGoodpractice.png)
+![The feedback given by goodpractice](TravisGoodpractice.tiff)
 
 Figure 13. Feedback given by the 'goodpractice' package
 
@@ -312,7 +312,7 @@ Feel free to take a look there, but it won't be too helpful.
 Instead, go to the Codecov website, https://codecov.io, 
 to get your code coverage displayed in a prettier way:
 
-![The feedback given by Codecov](TravisCodecov.png)
+![The feedback given by Codecov](TravisCodecov.tiff)
 
 Figure 14. Feedback given by the 'covr' package, as displayed by Codecov
 
@@ -362,7 +362,7 @@ Add the following code to `README.md` to get the status badges displayed:
 [![codecov.io](https://codecov.io/github/[yourname]/[package name]/coverage.svg?branch=master)](https://codecov.io/github/[yourname]/[package name]?branch=master)
 ```
 
-![Travis badges](Travis_badges.png)
+![Travis badges](Travis_badges.tiff)
 
 Figure 15. The badges displayed on your GitHub
 
