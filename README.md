@@ -325,17 +325,19 @@ Code better. Sleep better. [Langr, 2013]
 
 ## What else you can do‭ 
 
-When having all tests cleared and high code coverage, you may want to show the world:
+When having all tests cleared and high code coverage, you may want to show the world.
 
-Add the following code to `README.md` to get the status badges displayed:
+This can be done by adding build badges to your *README.md*, in your GitHub's main folder. 
+Such badges look like this:
+
+![Figure 15. The badges displayed on your GitHub](Travis_badges.png)
+
+To display these badges, add the following code to the *README.md* in your GitHub's main folder:
 
 ```
 [![Build Status](https://travis-ci.org/[yourname]/[package name].svg?branch=master)](https://travis-ci.org/[yourname]/[package name])
 [![codecov.io](https://codecov.io/github/[yourname]/[package name]/coverage.svg?branch=master)](https://codecov.io/github/[yourname]/[package name]?branch=master)
 ```
-
-![Figure 15. The badges displayed on your GitHub](Travis_badges.png)
-
 I hope it will inspire other people to do the same. I know that it did so for me.
 
 ## Summary
