@@ -1,8 +1,9 @@
-# Professional R development: being a good boy/girl
+# Raising your code to professional standards
 
-My article published in the SDJ about professional.
+My article published in the SDJ about raising 
+your code to professional standards.
 
-# Professional R development: being a good boy/girl
+# Raising your code to professional standards.
 
 ## Introduction
 
@@ -347,6 +348,10 @@ yourself be corrected when deviating from
 the industry standard.
 
 Go forth and develop like a pro.
+
+## Acknowledgements
+
+I'd like to thank Rampal S. Etienne and Cyrus A. Mallon for his feedback on a draft of this article.
 
 ## On the Web
 
