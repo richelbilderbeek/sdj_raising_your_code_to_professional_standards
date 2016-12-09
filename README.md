@@ -1,5 +1,7 @@
 # Raising your code to professional standards
 
+[![Build Status](https://travis-ci.org/richelbilderbeek/sdj_raising_your_code_to_professional_standards.svg?branch=master)](https://travis-ci.org/richelbilderbeek/sdj_raising_your_code_to_professional_standards)
+
 My article published in the SDJ about raising 
 your code to professional standards.
 
