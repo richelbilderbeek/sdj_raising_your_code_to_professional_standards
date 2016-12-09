@@ -14,7 +14,7 @@ follows all good practices. You are open to being corrected
 by any professional tool and learn from it. You want to
 program like the pros. You should read this article.
 
-## What you will learn‭...
+## What you will learn‭
 
 You'll learn to add automatic testing for
 coding standard, code coverage and good practices upon
@@ -24,7 +24,7 @@ We'll use an example package as a testcase.
 
 In the end, you'll have a script that forces you to work like a pro.
 
-## What you should know‭...
+## What you should know‭
 
 It is assumed you know how to
  
@@ -47,7 +47,7 @@ Within R, he like to quote all works from Hadley Wickham.
 ## Advantages‭ 
 
 You are a novice R programmer. You have a brilliant idea. You
-follow that avenue. All your packages will benefit!
+follow that avenue. All your packages will benefit.
 
 A year later, you regret that descision. You could have known
 you should not have done that, would you have read those books
@@ -122,7 +122,7 @@ As a novice R programmer (there are hints in your R code you
 come from a C or C++ background), you may have no ideas.
 
 Rest assured there will be packages that will aid you in becoming
-a professional R developer! 
+a professional R developer.
 
 ### Activate Travis CI
 
@@ -226,7 +226,7 @@ After pushing *.travis.yml* to your GitHub, it will be visible immediatly on Git
 
 ![Figure 5. Your GitHub after adding the Travis CI build script](GitHubBefore.png)
 
-In the back, Travis CI will start doing its labour immediatly.
+In the back, Travis CI will start doing its labor immediatly.
 
 ### Read results
 
