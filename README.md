@@ -302,7 +302,7 @@ suggest not to use a particular function but to use a better alternative instead
 There is a third triangle that can be extended, providing information about the 
 call to the 'covr' package, 
 in the Travis build log. 
-Viewing this information here is not helpful, as it is displayed in a very crude form.
+Viewing this information here is not helpful, as it is displayed in a crude form.
 Instead, go back to the Codecov website, https://codecov.io, 
 to view the code coverage in a prettier way:
 
