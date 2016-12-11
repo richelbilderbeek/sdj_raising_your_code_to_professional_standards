@@ -1,10 +1,3 @@
-# Raising your code to professional standards
-
-[![Build Status](https://travis-ci.org/richelbilderbeek/sdj_raising_your_code_to_professional_standards.svg?branch=master)](https://travis-ci.org/richelbilderbeek/sdj_raising_your_code_to_professional_standards)
-
-My article published in the SDJ about raising 
-your code to professional standards.
-
 # Raising your code to professional standards.
 
 ## Introduction
@@ -199,7 +192,7 @@ For a new user, this screen will be mostly empty, as no code's coverage has been
 For a user that has multiple GitHub repositories' code coverage measured,
 the Codecov screen will look like this:
 
-![Figure X: Overview of GitHubs checked by CodeCov](CodecovMyGitHubs.png)
+![Figure 5: Overview of GitHubs checked by CodeCov](CodecovMyGitHubs.png)
 
 In this figure, one can see a uses that has at least three GitHub repositories
 that have their code coverage checked. 
@@ -247,7 +240,7 @@ After having created this *.travis.yml* file, upload it to GitHub.
 
 After uploading *.travis.yml* to a GitHub, it will be visible immediatly on GitHub:
 
-![Figure 5. The 'prde' GitHub after adding the Travis CI build script](GitHubBefore.png)
+![Figure 6. The 'prde' GitHub after adding the Travis CI build script](GitHubBefore.png)
 
 This push to a GitHub triggers Travis CI and it will immediatly start doing its work.
 
@@ -263,7 +256,7 @@ The *.travis.yml* script caches all packages, making the second build faster.
 
 Here is the header of the 'prde' package its first build:
 
-![Figure 6. Header of the 'prde' package its first build](TravisFirstBuild.png)
+![Figure 7. Header of the 'prde' package its first build](TravisFirstBuild.png)
 
 We already know the package will pass this check, as this has been checked already in RStudio.
 Should the build not pass, the same output will be shown as given by _devtools::check()_ and nothing more.
