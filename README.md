@@ -77,6 +77,8 @@ hosted on GitHub:
 
 ![Figure 1. The GitHub of the package 'prde'](prde.png)
 
+Figure 1. The GitHub of the package 'prde'
+
 Within the 'prde' package resides a function, called *do_magic*,
 like this:
 
@@ -141,6 +143,8 @@ I just happened to learn Travis CI first.
 
 ![Figure 2. The Travis CI logo](TravisCI.png)
 
+Figure 2. The Travis CI logo
+
 The first step of our setup is to activate Travis CI. 
 
 Travis CI is a continuous integration service (hence, the 'CI' in the name) that 
@@ -154,6 +158,8 @@ Travis requests authorization for some GitHub information, like username and ema
 After authorization, Travis CI shows all the user's GitHub repositories and their activation status:
 
 ![Figure 3. Overview of GitHubs checked by Travis CI](TravisAccounts.png)
+
+Figure 3. Overview of GitHubs checked by Travis CI
 
 In this figure, a user is shown that has at least three GitHub repositories,
 of which one is not activated (the grey cross) and two are (the green check).
@@ -175,6 +181,8 @@ uses Codecov.
 
 ![Figure 4. The Codecov logo](Codecov.png)
 
+Figure 4. The Codecov logo
+
 The second step is to activate Codecov. 
 
 Codecov is a website that shows a GitHub repository's code coverage in a user-friendly form.
@@ -192,7 +200,9 @@ For a new user, this screen will be mostly empty, as no code's coverage has been
 For a user that has multiple GitHub repositories' code coverage measured,
 the Codecov screen will look like this:
 
-![Figure 5: Overview of GitHubs checked by CodeCov](CodecovMyGitHubs.png)
+![Figure 5: Example overview of GitHubs checked by CodeCov](CodecovMyGitHubs.png)
+
+Figure 5: Example overview of GitHubs checked by CodeCov
 
 In this figure, one can see a uses that has at least three GitHub repositories
 that have their code coverage checked. 
@@ -242,6 +252,8 @@ After uploading *.travis.yml* to a GitHub, it will be visible immediatly on GitH
 
 ![Figure 6. The 'prde' GitHub after adding the Travis CI build script](GitHubBefore.png)
 
+Figure 6. The 'prde' GitHub after adding the Travis CI build script
+
 This push to a GitHub triggers Travis CI and it will immediatly start doing its work.
 
 ### Read results
@@ -258,11 +270,15 @@ Here is the header of the 'prde' package its first build:
 
 ![Figure 7. Header of the 'prde' package its first build](TravisFirstBuild.png)
 
+Figure 7. Header of the 'prde' package its first build
+
 We already know the package will pass this check, as this has been checked already in RStudio.
 Should the build not pass, the same output will be shown as given by _devtools::check()_ and nothing more.
 If the build does pass, there will be some new information at the bottom:
 
 ![Figure 8. Bottom of the 'prde' package its first build](TravisFirstBuildBottom.png)
+
+Figure 8. Bottom of the 'prde' package its first build
 
 Clicking on the triangles on the left reveals some extra information.
 
@@ -270,24 +286,34 @@ First, we'll expand the feedback from the 'lintr' package (by Jim Hester). It sh
 
 ![Figure 9. The feedback given by the 'lintr' package](TravisLintr.png)
 
+Figure 9. The feedback given by the 'lintr' package
+
 'lintr' is a package to check if the package its coding style follows well-accapted standards, like those of
 Wickham (2014) and Wickham (2015). 
 
 ![Figure 10. Jim Hester](jimhester.jpg)
+
+Figure 10. Jim Hester
 
 The output of 'lintr' is not only shown on the Travis CI website.
 Also my good friend lintr-bot will comment on the commit on GitHub, with exactly the same messages:
  
 ![Figure 11. Comments by lintr-bot on the commit, as shown on GitHub](Lintr-bot.png) 
 
+Figure 11. Comments by lintr-bot on the commit, as shown on GitHub
+
 lintr-bot is always right. If needed, 'lintr' can be made to allow for other coding standards.
 
 ![Figure 12. The MangoTheCat logo](MangoTheCat.png)
+
+Figure 12. The MangoTheCat logo
 
 Moving on from lintr-bots words of wisdom,
 we'll expand the feedback from the 'goodpractice' package (by MangoTheCat). This one shows:
 
 ![Figure 13. Feedback given by the 'goodpractice' package](TravisGoodpractice.png)
+
+Figure 13. Feedback given by the 'goodpractice' package
 
 'goodpractice' extends 'lintr' by adding good practices. For example, it may
 suggest not to use a particular function but to use a better alternative instead. 
@@ -300,6 +326,8 @@ Instead, go back to the Codecov website, https://codecov.io,
 to view the code coverage in a prettier way:
 
 ![Figure 14. Feedback given by the 'covr' package, as displayed by Codecov](TravisCodecov.png)
+
+Figure 14. Feedback given by the 'covr' package, as displayed by Codecov
 
 The code coverage shows, that the 'prde' package's author has forgotten to test if the 
 *do_magic* function indeed throws an exception when the input is not numerical.
@@ -339,6 +367,8 @@ This can be done by adding build badges to the *README.md* file, in the GitHub's
 Such badges look like this:
 
 ![Figure 15. The badges displayed on the 'prde' GitHub](Travis_badges.png)
+
+Figure 15. The badges displayed on the 'prde' GitHub
 
 To display these badges, add the following code to the *README.md* in a GitHub's main folder:
 
