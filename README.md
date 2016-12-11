@@ -20,10 +20,10 @@ Then you should read this article.
 
 You'll learn to add automatic testing for
 coding standard and code coverage and good practices. 
-This is all triggered by a *git push*; by uploading 
-your package's new code to its GitHub. 
+This is all triggered by a *git push* the command that uploads
+your package's code to its GitHub. 
 
-We'll use an example package as a testcase. 
+We'll use an example package as a test case. 
 
 In the end, you'll have a script that forces you to work like a pro.
 
@@ -36,35 +36,39 @@ It is assumed you know how to
  * use the 'testthat' testing framework's most basic functionality
  * let that package be hosted on GitHub
 
-To be able to read an R function, read any beginner book about
-R or use the 'swirl' package. The other points are covered 
-in [Hadley, 2015], a book that I recommend beginners to read as soon as possible.
+In case you are not yet able to read an R function, I recommend 
+reading [Matloff, 2011] or use the 'swirl' package. 
+
+In case you are not able to write a package, use testthat or know GitHub, 
+I recommend reading [Hadley, 2015].
 
 ## About the author
 
 I enjoy to teach programming following the industry's highest standards. 
-My students, aged 7-77 years, are all confronted with quotes from the literature,
-especially from 'The Pragmatic Programmer' by Andrew Hunt and David Thomas.
-Regarding R, I like to quote all works from Hadley Wickham.
+My students, aged 7-77 years, are all confronted with quotes of advice 
+from the literature, especially from 'The Pragmatic Programmer' 
+by Andrew Hunt and David Thomas. Regarding R, I like to quote all 
+advice from Hadley Wickham.
 
 ## Advantages‭ 
 
 Following the experts' good practices will save you time developing your code.
 
-The setup of this article helps you follow some of these good practices,
-which are a rational coding standard, having a high code coverage and 
-using R in the preferable way.
+The setup of this article helps you follow some of these good practices.
+The practices are a rational coding standard, have a high code coverage (all 
+you code is tested), and use R in a pragmatic way.
 
-## Use in practice
+## In practice
 
 In this article, I will show how to let yourself be helped.
 
 First, I will introduce the package 'prde' ('Professional R Development Example'). 
-This package serves as a testcase and is hosted on GitHub. The package is flawed on purpose, 
-yet passes all CRAN tests. 
+This package serves as a test case for showing how its flaws are exposed by 
+this article's setup. The package is thus flawed on purpose, 
+yet passes all CRAN tests. 'prdr' is hosted on GitHub. 
 
-Then I show how to set up accounts for two websites, that will play
-smoothly with your GitHub account. These are Travis CI, for setting
+Then I show how to set up accounts for two websites, that will interact
+seamlessly with your GitHub account. These are Travis CI, for setting
 up automatic testing (more on that later), and Codecov, that tracks
 your package code's coverage (more on that later).
 
@@ -72,7 +76,7 @@ Having all websites activated, a file is uploaded to your
 package's GitHub, that will trigger responses by the Travis CI and Codecov website.
 I'll discuss these responses one by one.
 
-### Testcase
+### Test case
 
 You have created a package called 'prde', that follows the
 structure described in [Wickham, 2015]. The package is
@@ -128,22 +132,23 @@ which is *tests/testthat/test-do_magic.R*.
 
 You assume you did a great job, as no errors 
 are found when you check the build in RStudio or using _devtools::check()_.
-You can submit your package to CRAN tonight without any 
+That means you can submit your package to CRAN tonight without any 
 problem (except to convince that the package is relevant)!
 
 ### Intermezzo: what is continuous integration?
 
 Continuous integration means that the effect of changed code, 
-after pushing it to GitHub,
+after having uploaded it to GitHub,
 is shown automatically after a short amount of time. In other words:
-if you broke it, you'll notice early. Or, if someone else breaks it, the team
+if the package cannot build anymore by an introduced flaw 
+(by, for example, a test that now fails),
+you'll notice early. Or, if someone else breaks it, the team
 will notice early. Also, when someone submits a Pull Request,
 you will see if it will break the build already before accepting it.
 
 There are many other continuous 
 integration services that work just as well, like Jenkins, Codeship, CircleCI and Wercker.
-I just happened to learn Travis CI first and I am unaware of the quality of the other
-continuous integration services. 
+I just happened to learn Travis CI first.
 
 ### Activate Travis CI
 
@@ -151,13 +156,13 @@ continuous integration services.
 
 The first step of our setup is to activate Travis CI. 
 
-Travis CI is a continuous integration (hence, the 'CI' in the name) service, that 
-is free to use when developing FLOSS software and works smoothly with GitHub.
+Travis CI is a continuous integration service (hence, the 'CI' in the name), that 
+is free to use when developing FLOSS software and works well with GitHub.
 
-We need to activate Travis CI first, because it is only when activated, 
-that it will start running upon an upload to GitHub.
+Let's first activate Travis CI, because only when activated, 
+will it start running upon an upload to GitHub.
 
-Go to the Travis CI website, _www.travis-ci.org_, and sign in with your GitHub account.
+To do this: go to the Travis CI website, _www.travis-ci.org_, and sign in with your GitHub account.
 Travis requests authorization for some GitHub information, like your name and email.
 After authorization, you see will see all your GitHub repositories 
 and their activation status:
@@ -172,7 +177,7 @@ Go find the GitHub of your R package and activate it.
 ### Intermezzo: what is code coverage?
 
 Code coverage is the percentage of lines of code covered by tests.
-If a line is untested, either you have detected dead code (that can be removed)
+If a line is untested, you hvae either detected dead code (that can be removed)
 or you should (be able to) write another test that does use that code.
 Code coverage correlates with code quality [Del Frate et al., 1995].
 
@@ -187,18 +192,18 @@ uses Codecov.
 The second step is to activate Codecov. 
 
 Codecov is a website that shows your code coverage in a user-friendly form.
-Codecov tracks a project's code coverage in time. If you develop over multiple
-git branches, code coverage can be displayed for each branch seperately.
+Codecov tracks a project's code coverage throughout time. If you develop over multiple
+git branches, code coverage can be seperately displayed for each branch.
 
-We need to activate Codecov now, because only when you have an account, 
-Codecov will receive and display your code coverage.
+We need to activate Codecov now, because  
+Codecov will only receive and display your code coverage when you have an acoount.
 
-Go to the Codecov website, *https://codecov.io*, and sign in with your GitHub account.
-Codecov requests authorization for some GitHub information, like your name and email.
+To activate Codecov, go to its website, *https://codecov.io*, and sign in with your GitHub account.
+It will request authorization for some GitHub information, like your name and email.
 
-After authorization, you see all your GitHubs that have their code coverage measured before.
-This screen will be mostly empty, as you have not measured any code coverage yet.
-If you have multiple GitHub repositories that have their code coverage checked,
+After authorization, you see all your GitHubs that have had their code coverage measured before.
+This screen will be mostly empty, as you have yet to measure any of your code's coverage.
+If you have multiple GitHub repositories where their code coverage is being checked,
 the Codecov screen will look like this:
 
 ![Figure X: Overview of GitHubs checked by CodeCov](CodecovMyGitHubs.png)
@@ -206,16 +211,17 @@ the Codecov screen will look like this:
 In this figure, you can see that I have at least three GitHub repositories
 that have their code coverage checked. 
 
-### Add build script
+### Instruct Travis CI
 
 The third step is to instruct Travis CI 
 what to do when new code is uploaded to an activated GitHub.
 
-Without a build script, Travis CI does not know what to do.
-You can instruct Travis CI to do anything you can do on 
-within the bash command language. A Travis CI build script is always named *.travis.yml*. 
+You can instruct Travis what to do using a build script, which is
+a plaintext file named *.travis.yml*.
 The file name starts with a dot, which makes it a hidden file on UNIX systems.
 The '.yml' extension is an abbreviation of 'Yet another Markup Language'.
+You can instruct Travis CI to do anything you can do on 
+within the bash command language. 
 
 In your project's root folder, create a file named *.travis.yml*, and put the following text in it:
 
@@ -236,24 +242,22 @@ after_success:
 
 Listing 3. The Travis CI script
 
-You can see that this *.travis.yml* is straightforward.
-The first line states that the programming language used here is R (Travis CI supports
-many other languages as well).
-The second line tells Travis CI to keep the installed packages in a cache, 
+This is a simplae and straightforward *.travis.yml* script.
+The first line states that the programming language used here is R.
+The second line tells Travis CI to keep the installed packages in a cache, in order
 to prevent needless reinstalls of these packages.
 The 'r_github_packages' section instructs Travis CI to install these GitHub-hosted packages.
 The 'after_success' section is run after the package passes a _devtools::check()_. 
 In this section, it will run checks
 from the 'lintr', 'covr' and 'goodpractice' packages. More on those packages later.
 
-After having created this *.travis.yml* file, commit and push it to GitHub.
-I enjoy naming this commit 'Go Travis'.
+After having created this *.travis.yml* file, upload it to GitHub.
 
 After pushing *.travis.yml* to your GitHub, it will be visible immediatly on GitHub:
 
 ![Figure 5. Your GitHub after adding the Travis CI build script](GitHubBefore.png)
 
-This push to your GitHub triggers Travis CI and it will start doing its work immediatly.
+This push to your GitHub triggers Travis CI and it will immediatly start doing its work.
 
 ### Read results
 
@@ -269,15 +273,10 @@ Here is the header of your first build:
 
 ![Figure 6. Header of your first build](TravisFirstBuild.png)
 
-In this build log, in line 112, Craig Citro, Hadley Wickham and Jim Hester are 
-all mentioned for their contributions to make R packages easy to be checked by Travis.
-
-![Figure 7. Craig Citro](craigcitro.png)
-
 We already know your build will pass this check, as you've already checked the build 
 in RStudio or used _devtools::check()_.
-Would the build not pass, you would see the same output as given by _devtools::check()_ and nothing more.
-If the build passes, there will be some new information at the bottom:
+Should the build not pass, you would see the same output as given by _devtools::check()_ and nothing more.
+If the build does pass, there will be some new information at the bottom:
 
 ![Figure 8. Tail of your first build](TravisFirstBuildBottom.png)
 
@@ -287,7 +286,7 @@ First, we'll expand the feedback from the 'lintr' package (by Jim Hester). It sh
 
 ![Figure 9. The feedback given by the 'lintr' package](TravisLintr.png)
 
-'lintr' is a package to check if your coding style follows the one used by, among others,
+'lintr' is a package to check if your coding style follows well-accapted standards, like those of
 Wickham (2014) and Wickham (2015). You'll see that 'lintr' has some suggestions. 
 
 ![Figure 10. Jim Hester](jimhester.jpg)
@@ -308,11 +307,12 @@ we'll expand the feedback from the 'goodpractice' package (by MangoTheCat). This
 ![Figure 13. Feedback given by the 'goodpractice' package](TravisGoodpractice.png)
 
 'goodpractice' extends 'lintr' by adding good practices. For example, it may
-suggest not to use a partical function, but use a better alternative instead. 
+suggest not to use a particular function but to use a better alternative instead. 
 
-There is a third triangle that can be extended, about the call to the 'covr' package, 
+There is a third triangle that can be extended, providing information about the 
+call to the 'covr' package, 
 in the Travis build log. 
-Feel free to take a look there, but it won't be too helpful.
+Viewing this information here is not helpful, as it is displayed in a very crude form.
 Instead, go back to the Codecov website, https://codecov.io, 
 to get your code coverage displayed in a prettier way:
 
@@ -331,22 +331,17 @@ as those same experts are also aware of your arguments
 favoring other standards.
 
 For my students, I enforce a clean 'oclint' and 'goodpractice' log and a code coverage of at least 95%.
-It is open to discussion what should be the minimal code coverage limit.
+The minimal code coverage limit is open to discussion.
 Personally, I favor a 100% code coverage. 
 The argumentation for an imperfect code coverage is, 
 that if you cannot test for something, 
 you probably should not keep those rarely triggered if-statements in.
-For my students, I allow them some leeway and test for 
-exotic (and sometimes imaginary) things like
-file corruption and data races. 
-They will have an incomplete code
-coverage for a fun reason.
 
 ## Who can use it?
 
-Already from the beginner level, one can use these techniques.
-For FLOSS development, all tools are free.
-For closed-source development, there is a fee on using GitHub, Travis CI and Codecov.
+These techniques can be used by everyone from beginning to experienced programmers.
+For FLOSS development, GitHub, Travis CI and Codecov are free, while
+closed-source development solicits a fee.
 
 ## What if I use it?
 
@@ -382,13 +377,14 @@ In this article, you have learned how to let
 yourself be corrected when deviating from
 the experts' good practice.
 
-We've created and activiated two website accounts and written
+We've created and activated two website accounts and written
 one text file. The time it took us setting up these tools will be won back
-quicky from the future changes to our R package.
+from the future changes to our R package.
 
 ## Acknowledgements
 
-I'd like to thank Luis Boullosa, Rampal S. Etienne and Cyrus A. Mallon for thir feedback on a draft of this article.
+I'd like to thank Luis Boullosa, Rampal S. Etienne and Cyrus A. Mallon for their feedback 
+on earlier drafts of this article.
 
 ## On the Web
 
@@ -417,5 +413,6 @@ I'd like to thank Luis Boullosa, Rampal S. Etienne and Cyrus A. Mallon for thir 
  * [Del Frate et al., 1995] Del Frate, Fabio, et al. "On the correlation between code coverage and software reliability." Software Reliability Engineering, 1995. Proceedings., Sixth International Symposium on. IEEE, 1995.
  * [Hunt & Thomas, 2000] Hunt, Andrew, and David Thomas. The pragmatic programmer: from journeyman to master. Addison-Wesley Professional, 2000.
  * [Langr, 2013] Langr, Jeff. Modern C++ Programming with Test-driven Development: Code Better, Sleep Better. Pragmatic Bookshelf, 2013.
+ * [Matloff, 2011] Matloff, Norman. The art of R programming: A tour of statistical software design. No Starch Press, 2011.
  * [Wickham, 2014] Wickham, Hadley. Advanced R. CRC Press, 2014.
  * [Wickham, 2015] Wickham, Hadley. R packages. " O'Reilly Media, Inc.", 2015.
