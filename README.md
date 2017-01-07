@@ -1,3 +1,7 @@
+# Preface
+
+This is the rough version of the article published at `sdjournal`, at https://sdjournal.org/raising-code-professional-standards. My article is in the free section and you can sign up with a GitHub account.
+
 # Raising your code to professional standards.
 
 ## Introduction
