@@ -87,7 +87,7 @@ Within the 'prde' package resides a function, called *do_magic*,
 like this:
 
 ```
-#' Multiples all values by two, 
+#' Multiplies all values by two, 
 #'   except 42, which stays 42
 #' @param x input, must be numeric
 #' @return magicified output
@@ -258,7 +258,7 @@ After uploading *.travis.yml* to a GitHub, it will be visible immediatly on GitH
 
 Figure 6. The 'prde' GitHub after adding the Travis CI build script
 
-This push to a GitHub triggers Travis CI and it will immediatly start doing its work.
+This push to a GitHub triggers Travis CI and it will immediately start doing its work.
 
 ### Read results
 
@@ -380,6 +380,9 @@ To display these badges, add the following code to the *README.md* in a GitHub's
 [![Build Status](https://travis-ci.org/[yourname]/[package name].svg?branch=master)](https://travis-ci.org/[yourname]/[package name])
 [![codecov.io](https://codecov.io/github/[yourname]/[package name]/coverage.svg?branch=master)](https://codecov.io/github/[yourname]/[package name]?branch=master)
 ```
+
+Listing 4. Displaying status badges
+
 I hope it will inspire other people to do the same. It did so for me.
 
 ## Summary
