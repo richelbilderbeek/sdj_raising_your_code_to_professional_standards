@@ -8,5 +8,6 @@ script:
   # Remove all quotes and apostrophs
   - sed -i 's/`//' README.md
   - sed -i 's/"//' README.md
+  - cat README.md
   # Proseline
   - proselint README.md
