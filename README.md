@@ -429,4 +429,4 @@ on earlier drafts of this article.
  * [Langr, 2013] Langr, Jeff. Modern C++ Programming with Test-driven Development: Code Better, Sleep Better. Pragmatic Bookshelf, 2013.
  * [Matloff, 2011] Matloff, Norman. The art of R programming: A tour of statistical software design. No Starch Press, 2011.
  * [Wickham, 2014] Wickham, Hadley. Advanced R. CRC Press, 2014.
- * [Wickham, 2015] Wickham, Hadley. R packages. " O'Reilly Media, Inc.", 2015.
+ * [Wickham, 2015] Wickham, Hadley. R packages. "O'Reilly Media, Inc.", 2015.
