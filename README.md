@@ -1,78 +1,93 @@
-# Professional R development: being a good boy/girl
+# Preface
 
-My article published in the SDJ about professional.
+This is the rough version of the article published at `sdjournal`, at https://sdjournal.org/raising-code-professional-standards. My article is in the free section and you can sign up with a GitHub account.
 
-# Professional R development: being a good boy/girl
+# Raising your code to professional standards.
 
 ## Introduction
 
-You want to be good. You want to (learn to) write code that
-follows all good practices. You are open to being corrected
+You want to be good. You want to learn to write a package that
+follows all of the expert guidelines. You are open to being corrected
 by any professional tool and learn from it. You want to
-program like the pros. You should read this article.
+program like the pros. You want to create a package you are proud of.
 
-## What you will learn‭...
+Then you should read this article.
+
+## What you will learn‭
 
 You'll learn to add automatic testing for
-coding standard, code coverage and good practices upon
-a push to your package its GitHub. 
+coding standard and code coverage and good practices. 
+This is all triggered by a *git push* the command that uploads
+your package's code to its GitHub. 
 
-We'll use an example package as a testcase. 
+We'll use an example package as a test case. 
 
 In the end, you'll have a script that forces you to work like a pro.
 
-## What you should know‭...
+## What you should know‭
 
 It is assumed you know how to
  
- * read a trivial function with basic R code
+ * read a function with basic R code
  * create a package 
- * use the 'testthat' testing framework most basic functionality
- * how to let that package be hosted on GitHub
+ * use the 'testthat' testing framework's most basic functionality
+ * let that package be hosted on GitHub
 
-To be able to read an R function, read any beginner book about
-R or use the 'swirl' package. The other points are covered 
-in [Hadley, 2015], a book that recommend beginners to read as soon as possible.
+In case you are not yet able to read an R function, I recommend 
+reading [Matloff, 2011] or use the 'swirl' package. 
+
+In case you are not able to write a package, use testthat or know GitHub, 
+I recommend reading [Hadley, 2015].
 
 ## About the author
 
-The author enjoys to teach programming following the industry's highest standards. 
-His students, aged 7-77 years, are all confronted with quotes from the literature,
-especially from 'The Pragmatic Programmer' by Andrew Hunt and David Thomas.
-Within R, he like to quote all works from Hadley Wickham.
+I enjoy to teach programming following the industry's highest standards. 
+My students, aged 7-77 years, are all confronted with quotes of advice 
+from the literature, especially from 'The Pragmatic Programmer' 
+by Andrew Hunt and David Thomas. Regarding R, I like to quote all 
+advice from Hadley Wickham.
 
 ## Advantages‭ 
 
-You are a novice R programmer. You have a brilliant idea. You
-follow that avenue. All your packages will benefit!
+Following the experts' good practices will save time in developing code.
 
-A year later, you regret that descision. You could have known
-you should not have done that, would you have read those books
-and articles earlier. 
+The setup of this article follows some of these good practices.
+The practices are a rational coding standard, have a high code coverage (all 
+code is tested), and use R in a pragmatic way.
 
-You can prevent this detour. When in Rome, do like the romans
-do. Likewise, when programming in R, do like the experts do.
+## In practice
 
-## Use in practice
+In this article, I will show how to be helped by the experts.
 
-In this article, I will show how to let yourself be helped.
-First, I will introduce a testcase, that has possible 
-improvements. After setting up a Travis CI and Codecov account,
-a Travis CI script is pushed to the GitHub. Then I'll discuss
-the Travis CI build log.
+First, I will introduce the package 'prde' ('Professional R Development Example'). 
+This package serves as a test case for showing how its flaws are exposed by 
+this article's setup. The package is thus flawed on purpose, 
+yet passes all CRAN tests. 'prdr' is hosted on GitHub. 
 
-### Testcase
+Then I show how to set up accounts for two websites that will interact
+seamlessly with a GitHub account. These are Travis CI, for setting
+up automatic testing (more on that later), and Codecov that tracks
+package code's coverage (more on that later).
 
-You are reading Hadley Wickham's book 'R packages' and 
-are building a package following that structure.
+Having all websites activated, a file is uploaded to the 
+package's GitHub, which will trigger responses by the Travis CI and Codecov website.
+I'll discuss these responses one by one.
 
-![Figure 1. Hadley Wickham](hadley.jpg)
+### Test case
 
-You've written a brilliant function, called 'do_magic'
-like this (probably stored in a file called *R/do_magic.R*):
+The test case is a package called 'prde', which follows the
+structure described in [Wickham, 2015]. The package is
+hosted on GitHub:
+
+![Figure 1. The GitHub of the package 'prde'](prde.png)
+
+Figure 1. The GitHub of the package 'prde'
+
+Within the 'prde' package resides a function, called *do_magic*,
+like this:
 
 ```
-#' Multiples all values by two, 
+#' Multiplies all values by two, 
 #'   except 42, which stays 42
 #' @param x input, must be numeric
 #' @return magicified output
@@ -88,14 +103,13 @@ do_magic <- function(x)
 }
 ```
 
-Listing 1. The do_magic function
+Listing 1. The 'do_magic' function
 
-You are proud of yourself: you've nicely documentated the
-function (using the 'Roxygen2' package). Next to this,
-your function checks its inputs, 
-and fails fast if it cannot process these.
-You even wrote some tests, using 'testthat' (probably stored in 
-a file calles *tests/testthat/test-do_magic.R*):
+The function *do_magic* is stored in a file at a conventional location, 
+which is *R/do_magic.R*. It is documented using the 'roxygen2' package. 
+The function checks for correct input, and fails fast if it cannot process these.
+
+The package has some tests, using 'testthat', as shown below:
 
 ```
 context("do_magic")
@@ -108,87 +122,107 @@ test_that("do_magic: use", {
 
 Listing 2. The do_magic tests
 
-You assume you've did a great job, as no errors 
-are found when you check the build in RStudio or use _devtools::check()_.
-You can submit your package to CRAN tonight without any 
-problem (except convincing that the package has relevance)!
+This test is stored in a file at a conventional location, 
+which is *tests/testthat/test-do_magic.R*. The tests all pass.
+No errors are found when the package is checked to build in RStudio or using _devtools::check()_.
+That means the package can be sent to CRAN without any 
+problem (except to convince that the package is relevant)!
 
-That night, before going to sleep, you start to ponder.
-You wonder if your code can be improved.
-As a novice R programmer (there are hints in your R code you 
-come from a C or C++ background), you may have no ideas.
+### Intermezzo: what is continuous integration?
 
-Rest assured there will be packages that will aid you in becoming
-a professional R developer! 
+Continuous integration means that the effect of changed code, 
+after having uploaded it to GitHub,
+is shown automatically after a short amount of time. In other words:
+if the package cannot build anymore by an introduced flaw 
+(by, for example, a test that now fails),
+it will be noticed early. Or, if someone else breaks it, the team
+will notice early. Also, when someone submits a Pull Request,
+one can see if it will break building the package before accepting it.
+
+There are many other continuous 
+integration services that work just as well, like Jenkins, Codeship, CircleCI and Wercker.
+I just happened to learn Travis CI first.
 
 ### Activate Travis CI
 
 ![Figure 2. The Travis CI logo](TravisCI.png)
 
-First step is to activate Travis CI. 
+Figure 2. The Travis CI logo
 
-Travis CI is a continuous integration (hence, the 'CI' in the name) service, that 
-is free to use when developing FLOSS software and works smoothly with GitHub.
+The first step of our setup is to activate Travis CI. 
 
-Continuous integration means that the effect of code, after pushing it to GitHub,
-is shown automatically after a short amount of time. In other words:
-if you broke it, you'll notice early. Or, if someone else breaks it, the team
-will notice early. Also, when someone submits a Pull Request,
-you will see if it will break the build already before accepting it.
+Travis CI is a continuous integration service (hence, the 'CI' in the name) that 
+is free to use when developing FLOSS software and works well with GitHub.
 
-There are many other continuous 
-integration services that work just as well, like Jenkins, Codeship, CircleCI and Wercker.
-I just happened to learn Travis CI first and I am unaware of the quality of the other
-continuous integration services. 
+Let's first activate Travis CI, because only when activated, 
+will it start running upon an upload to GitHub.
 
-We need to activate Travis CI first, because only when activated, 
-it will start running upon a GitHub push.
+To do this: go to the Travis CI website, _www.travis-ci.org_, and sign in with a GitHub account.
+Travis requests authorization for some GitHub information, like username and email.
+After authorization, Travis CI shows all the user's GitHub repositories and their activation status:
 
-Go to the Travis CI website, _www.travis-ci.org_, and sign in with your GitHub account.
-Travis requests authorization for some GitHub information, like your name and email.
-After authorization, you see all GitHubs and their activation status
+![Figure 3. Overview of GitHubs checked by Travis CI](TravisAccounts.png)
 
-![Figure 3. Overview of Travis CI accounts](TravisAccounts.png)
+Figure 3. Overview of GitHubs checked by Travis CI
 
-The sliders indicate the Travis CI activation state. 
-Go find your R package its GitHub and activate it.
+In this figure, a user is shown that has at least three GitHub repositories,
+of which one is not activated (the grey cross) and two are (the green check).
+
+Go find the GitHub of an R package and activate it.
+
+### Intermezzo: what is code coverage?
+
+Code coverage is the percentage of lines of code covered by tests.
+If a line is untested, either dead code is detected (that can be removed)
+or a test should be writen that does make use of that code.
+Code coverage correlates with code quality [Del Frate et al., 1995].
+
+There are other services that track code coverage, like Code Climate, Codacity, Coveralls, 
+QuantifiedCode and many more. It just happens to be that the package we'll use ('lintr')
+uses Codecov.
 
 ### Activate Codecov
 
 ![Figure 4. The Codecov logo](Codecov.png)
 
-Second step is to activate Codecov. 
+Figure 4. The Codecov logo
 
-Codecov is a website that shows your code coverage in a user-friendly form.
-Codecov tracks a project its code coverage in time and over multiple branches.
+The second step is to activate Codecov. 
 
-Code coverage is the percentage of lines of code covered by tests.
-If a line is untested, either you have detected dead code (that can be removed)
-or you should (be able to) write another test that does use that code.
-Code coverage correlates with code quality [Del Frate et al., 1995]
+Codecov is a website that shows a GitHub repository's code coverage in a user-friendly form.
+Codecov tracks a project's code coverage throughout time. If there are multiple
+git branches, code coverage is displayed seperately for each branch.
 
-There are other services that track code coverage, like Code Climate, Codacity, Coveralls, 
-QuantifiedCode and many more. It just happens to be that the package we'll use ('lintr')
-uses Codecov, but it could probably just as easy have used to other code coverage service.
+We need to activate Codecov now, because  
+Codecov will only receive and display code coverage of registered users.
 
-We need to activate Codecov now, because only when you have an account, 
-Codecov will receive and display your code coverage.
+To activate Codecov, go to its website, *https://codecov.io*, and sign in with a GitHub account.
+It will request authorization for some GitHub information, like username and email.
 
-Go to the Codecov website, *https://codecov.io*, and sign in with your GitHub account.
-Codecov requests authorization for some GitHub information, like your name and email.
-After authorization, you see all the GitHubs that have sent their code coverages over.
+After authorization, Codecov displays the code coverage of all the user's GitHubs.
+For a new user, this screen will be mostly empty, as no code's coverage has been measured yet.
+For a user that has multiple GitHub repositories' code coverage measured,
+the Codecov screen will look like this:
 
-### Add build script
+![Figure 5: Example overview of GitHubs checked by CodeCov](CodecovMyGitHubs.png)
 
-Third step is to create a Travis CI build script.
+Figure 5: Example overview of GitHubs checked by CodeCov
 
-A Travis CI build script is a file that instructs Travis CI what to do.
-Basically, you can instruct Travis CI to do anything you can do on 
-within the bash command language. A Travis CI build script is always named *.travis.yml*. 
-The file starts with a dot, which makes it a hidden file on UNIX systems.
+In this figure, one can see a uses that has at least three GitHub repositories
+that have their code coverage checked. 
+
+### Instruct Travis CI
+
+The third step is to instruct Travis CI 
+what to do when new code is uploaded to an activated GitHub.
+
+Travis is instructed what to do using a build script, which is
+a plaintext file named *.travis.yml*.
+The file name starts with a dot, which makes it a hidden file on UNIX systems.
 The '.yml' extension is an abbreviation of 'Yet another Markup Language'.
+Travis CI is instructed in the bash command language. 
 
-In your project's root folder, create a file named *.travis.yml*, and put the following text in it:
+In the project's root folder, create a file named *.travis.yml*, and put the following text in it:
 
 ```
 language: r
@@ -207,110 +241,117 @@ after_success:
 
 Listing 3. The Travis CI script
 
-You can see that this *.travis.yml* is straightforward.
+This is a simplae and straightforward *.travis.yml* script.
 The first line states that the programming language used here is R.
-The second line tells Travis CI to keep the installed packages in a cache, 
+The second line tells Travis CI to keep the installed packages in a cache, in order
 to prevent needless reinstalls of these packages.
 The 'r_github_packages' section instructs Travis CI to install these GitHub-hosted packages.
 The 'after_success' section is run after the package passes a _devtools::check()_. 
 In this section, it will run checks
 from the 'lintr', 'covr' and 'goodpractice' packages. More on those packages later.
 
-After having creates this *.travis.yml* file, commit and push it to GitHub.
-I enjoy to name this commit 'Go Travis', but I am open to even better suggestions.
+After having created this *.travis.yml* file, upload it to GitHub.
 
-After pushing *.travis.yml* to your GitHub, it will be visible immediatly on GitHub:
+After uploading *.travis.yml* to a GitHub, it will be visible immediatly on GitHub:
 
-![Figure 5. Your GitHub after adding the Travis CI build script](GitHubBefore.png)
+![Figure 6. The 'prde' GitHub after adding the Travis CI build script](GitHubBefore.png)
 
-In the back, Travis CI will start doing its labour immediatly.
+Figure 6. The 'prde' GitHub after adding the Travis CI build script
+
+This push to a GitHub triggers Travis CI and it will immediately start doing its work.
 
 ### Read results
 
-Travis CI needs some time to set up a virtual machine. Every time you push to GitHub, a
-virtual machine is created, so you have a (close to) clean slate that your tests run in.
-To see Travis CI do its work, go to the Travis CI website, *https://travis-ci.org*. 
-After approximately one minute, you'll see Travis CI do its work.
-You will see it first installs all packages and their dependencies.
-The *.travis.yml* script caches all packages, making the second build finish faster.
+Travis CI needs some time to set up a virtual machine. Every time an upload to GitHub is made, a
+virtual machine is created, to ensure a reproducible build and test environment.
 
-Here is the header of your first build:
+To see Travis CI do its work, go back to the Travis CI website, *https://travis-ci.org*. 
+After approximately one minute, Travis CI's progress becomes visible.
+Travis CI first installs all packages and their dependencies.
+The *.travis.yml* script caches all packages, making the second build faster.
 
-![Figure 6. Header of your first build](TravisFirstBuild.png)
+Here is the header of the 'prde' package its first build:
 
-Craig Citro, Hadley Wickham and Jim Hester are all mentioned for their
-contributions to make R packages easy to be checked by Travis.
+![Figure 7. Header of the 'prde' package its first build](TravisFirstBuild.png)
 
-![Figure 7. Craig Citro](craigcitro.png)
+Figure 7. Header of the 'prde' package its first build
 
-We already know your build will pass, as you've already checked the build in RStudio or used _devtools::check()_.
-Would the build not pass, you will see the same output as given by _devtools::check()_ and nothing more.
-If the build passes, there will be some new information is at the bottom:
+We already know the package will pass this check, as this has been checked already in RStudio.
+Should the build not pass, the same output will be shown as given by _devtools::check()_ and nothing more.
+If the build does pass, there will be some new information at the bottom:
 
-![Figure 8. Tail of your first build](TravisFirstBuildBottom.png)
+![Figure 8. Bottom of the 'prde' package its first build](TravisFirstBuildBottom.png)
+
+Figure 8. Bottom of the 'prde' package its first build
 
 Clicking on the triangles on the left reveals some extra information.
 
-First, we'll expand the 'lintr' package (by Jim Hester) its feedback. It shows:
+First, we'll expand the feedback from the 'lintr' package (by Jim Hester). It shows:
 
 ![Figure 9. The feedback given by the 'lintr' package](TravisLintr.png)
 
-'lintr' is a package to check if your coding style follow the one used by, among others,
-[Wickham, 2014] and [Wickham, 2015]. You'll see that 'lintr' has some suggestions. 
+Figure 9. The feedback given by the 'lintr' package
+
+'lintr' is a package to check if the package its coding style follows well-accapted standards, like those of
+Wickham (2014) and Wickham (2015). 
 
 ![Figure 10. Jim Hester](jimhester.jpg)
 
-Not only can you see this in your build logs, my good friend lintr-bot will
-comment on that commit himself, with exactly the same messages:
+Figure 10. Jim Hester
 
-![Figure 11. Comments by lintr-bot on your commit](Lintr-bot.png)
+The output of 'lintr' is not only shown on the Travis CI website.
+Also my good friend lintr-bot will comment on the commit on GitHub, with exactly the same messages:
+ 
+![Figure 11. Comments by lintr-bot on the commit, as shown on GitHub](Lintr-bot.png) 
 
-lintr-bot is always right. In case you disagree with it, you can modify the 
-checks done by 'lintr' and allow for other coding standards (but why would
-one want to go that avenue? Why would the experts have picked those standards,
-and wouldn't they also know the arguments favoring other standards?).
+Figure 11. Comments by lintr-bot on the commit, as shown on GitHub
+
+lintr-bot is always right. If needed, 'lintr' can be made to allow for other coding standards.
 
 ![Figure 12. The MangoTheCat logo](MangoTheCat.png)
 
+Figure 12. The MangoTheCat logo
+
 Moving on from lintr-bots words of wisdom,
-we'll expand the 'goodpractice' package (by MangoTheCat) its feedback. This one shows:
+we'll expand the feedback from the 'goodpractice' package (by MangoTheCat). This one shows:
 
 ![Figure 13. Feedback given by the 'goodpractice' package](TravisGoodpractice.png)
 
-'goodpractice' extends 'lintr' by adding good practices. For example, it may
-suggest not to use a function, but use a better alternative instead. 
+Figure 13. Feedback given by the 'goodpractice' package
 
-There is a third triangle, about the call to the 'covr' package, 
-in the Travis build log that can be extended. 
-Feel free to take a look there, but it won't be too helpful.
-Instead, go to the Codecov website, https://codecov.io, 
-to get your code coverage displayed in a prettier way:
+'goodpractice' extends 'lintr' by adding good practices. For example, it may
+suggest not to use a particular function but to use a better alternative instead. 
+
+There is a third triangle that can be extended, providing information about the 
+call to the 'covr' package, 
+in the Travis build log. 
+Viewing this information here is not helpful, as it is displayed in a crude form.
+Instead, go back to the Codecov website, https://codecov.io, 
+to view the code coverage in a prettier way:
 
 ![Figure 14. Feedback given by the 'covr' package, as displayed by Codecov](TravisCodecov.png)
 
-For your code coverage, you can see that you have forgotten to test if your function does
-throw an exception when the input is not numerical.
+Figure 14. Feedback given by the 'covr' package, as displayed by Codecov
 
-You can thank the tools (and people having written those) for helping 
-you become a better R programmer. You may listen to these advices
-and fix these. Again, you may have your own ideas that you may think
-are better. But why would the experts recommend against those? And
-wouldn't they also be aware of you arguments agains those rules?
+The code coverage shows, that the 'prde' package's author has forgotten to test if the 
+*do_magic* function indeed throws an exception when the input is not numerical.
+
+Thanks to these the tools (and people having written those) 
+it is easier to become a better R programmer. 
+
+I suggest to listen to these advices and follow these. 
+
+If one disagrees on the experts' advice, I am always curious to know 
+why. The experts have picked those standards for a reason.
+And those experts are also aware of the arguments favoring other standards.
 
 For my students, I enforce a clean 'oclint' and 'goodpractice' log and a code coverage of at least 95%.
-It is open to discussion what should be the minimal code coverage limit.
-Personally, I favor a 100% code coverage. The argumentation for a 10% code coverage is, 
-that if you cannot test for a 100% code coverage, 
-you probably should not keep those rarely triggered if-statements in.
-For my students, I allow them some leeway and test for things like
-file corruption and data races. They will have an incomplete code
-coverage for a nice reason.
 
 ## Who can use it?
 
-Already from the beginner level, one can use these techniques.
-For FLOSS development, all tools are free.
-For closed-source development, there is a fee on using GitHub, Travis CI and Codecov.
+These techniques can be used by everyone from beginning to experienced programmers.
+For FLOSS development, GitHub, Travis CI and Codecov are free, while
+closed-source development solicits a fee.
 
 ## What if I use it?
 
@@ -318,35 +359,46 @@ For closed-source development, there is a fee on using GitHub, Travis CI and Cod
 Code better. Sleep better. [Langr, 2013]
 ```
 
- * As an developer, you can rest assured you've followed all best practices.
- * As a potential collaborator, it will be easier to read your code.
- * Within a team, there will be no need to write a low-level coding standard
- * As a package maintainer, let Pull Requests be checked for these same high standards
+ * Rest assured all the best practices have been followed
+ * A potential collaborator can read such code more easily
+ * There will be no need to write a low-level coding standard
+ * Someone that submits a Pull Requests will be checked for these same high standards
 
 ## What else you can do‭ 
 
-When having all tests cleared and high code coverage, you may want to show the world.
-
-This can be done by adding build badges to your *README.md*, in your GitHub's main folder. 
+When having all tests cleared and high code coverage, this may be shown to the world.
+This can be done by adding build badges to the *README.md* file, in the GitHub's main folder. 
 Such badges look like this:
 
-![Figure 15. The badges displayed on your GitHub](Travis_badges.png)
+![Figure 15. The badges displayed on the 'prde' GitHub](Travis_badges.png)
 
-To display these badges, add the following code to the *README.md* in your GitHub's main folder:
+Figure 15. The badges displayed on the 'prde' GitHub
+
+To display these badges, add the following code to the *README.md* in a GitHub's main folder:
 
 ```
 [![Build Status](https://travis-ci.org/[yourname]/[package name].svg?branch=master)](https://travis-ci.org/[yourname]/[package name])
 [![codecov.io](https://codecov.io/github/[yourname]/[package name]/coverage.svg?branch=master)](https://codecov.io/github/[yourname]/[package name]?branch=master)
 ```
-I hope it will inspire other people to do the same. I know that it did so for me.
+
+Listing 4. Displaying status badges
+
+I hope it will inspire other people to do the same. It did so for me.
 
 ## Summary
 
 In this article, you have learned how to let
 yourself be corrected when deviating from
-the industry standard.
+the experts' good practice.
 
-Go forth and develop like a pro.
+We've created and activated two website accounts and written
+one text file. The time it took us setting up these tools will be won back
+from the future changes to our R package.
+
+## Acknowledgements
+
+I'd like to thank Luis Boullosa, Rampal S. Etienne and Cyrus A. Mallon for their feedback 
+on earlier drafts of this article.
 
 ## On the Web
 
@@ -358,10 +410,16 @@ Go forth and develop like a pro.
 
 ## Glossary
 
- * Code coverage: the percentage of statements executed in your tests
+ * Code coverage: the percentage of statements executed in tests
  * Continuous integration: integrate development branches continuously, monitoring their effects continously
+ * FLOSS: Free/Libre and Open-Source Software: software that is free (as in speech) and open-source
  * git: version control system
- * GitHub: online git repository host
+ * `git push`: the git command to upload modified code to a git repository host
+ * git repository: code that is uses git for version control
+ * git repository host: website for a git repository
+ * IDE: Integrated Development Environment, a program that helps to develop code
+ * GitHub: a git repository host
+ * RStudio: R IDE
  * Travis CI: online continuous integration service
 
 ## References
@@ -369,5 +427,6 @@ Go forth and develop like a pro.
  * [Del Frate et al., 1995] Del Frate, Fabio, et al. "On the correlation between code coverage and software reliability." Software Reliability Engineering, 1995. Proceedings., Sixth International Symposium on. IEEE, 1995.
  * [Hunt & Thomas, 2000] Hunt, Andrew, and David Thomas. The pragmatic programmer: from journeyman to master. Addison-Wesley Professional, 2000.
  * [Langr, 2013] Langr, Jeff. Modern C++ Programming with Test-driven Development: Code Better, Sleep Better. Pragmatic Bookshelf, 2013.
+ * [Matloff, 2011] Matloff, Norman. The art of R programming: A tour of statistical software design. No Starch Press, 2011.
  * [Wickham, 2014] Wickham, Hadley. Advanced R. CRC Press, 2014.
  * [Wickham, 2015] Wickham, Hadley. R packages. " O'Reilly Media, Inc.", 2015.
