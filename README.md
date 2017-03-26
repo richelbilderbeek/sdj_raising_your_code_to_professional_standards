@@ -241,7 +241,7 @@ after_success:
 
 Listing 3. The Travis CI script
 
-This is a simplae and straightforward *.travis.yml* script.
+This is a simple and straightforward *.travis.yml* script.
 The first line states that the programming language used here is R.
 The second line tells Travis CI to keep the installed packages in a cache, in order
 to prevent needless reinstalls of these packages.
